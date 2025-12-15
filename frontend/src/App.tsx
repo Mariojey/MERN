@@ -29,6 +29,15 @@ function App() {
 
   },[]);
 
+  async function deleteInformation(info: IInformation) {
+    try{
+      await InformationsAPI.deleteInformation(info._id);
+      setInformations(informations.filter(currInfos => currInfos._id !== info._id));
+    }catch(error){
+      console.error(error);
+    }
+  }
+
   return (
     <>
       <div className="App">
@@ -38,7 +47,8 @@ function App() {
         </button>
         <div className="flex flex-wrap">
           {informations.map(information => (
-            <InfoCard key={information._id} info={information} styles="min-w-[150px]"/>
+            <InfoCard key={information._id} info={information} styles="min-w-[150px]"
+              onDeleteInfoPresses={deleteInformation}/>
           ))}
         </div>
         <Modal open={isCreatePopUpOpen} onClose={() => setIsCreatePopUpOpen(false)}>

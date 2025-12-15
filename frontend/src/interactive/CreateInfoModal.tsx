@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form"
 import type { IInformation } from "../types/information"
-import Modal from "./Modal"
 import { createInformation, type IInformationFields } from "../api/information"
 
 interface ICreateInfoModal {

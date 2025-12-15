@@ -49,3 +49,12 @@ export async function createInformation(information: IInformationFields): Promis
     return response.json();
 
 }
+
+
+export async function deleteInformation(infoId: string) {
+    await fetchData(`${localBackend}/api/informations/${infoId}`,
+        {
+            method: "DELETE"
+        }
+    );
+}
