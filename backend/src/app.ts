@@ -4,7 +4,10 @@ import morgan from "morgan"
 import cors from "cors"
 
 import informationRoutes from "./routes/informationsRoutes.ts"
+import usersRoutes from "./routes/usersRouter.ts"
 import createHttpError, {isHttpError} from "http-errors";
+import session from "express-session"
+import env from "./util/envValidation.ts"
 
 const app = express();
 
@@ -14,8 +17,22 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 
+app.use(session({
+    secret: env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
+    },
+    rolling: true,
+    store: new (await import("connect-mongo")).default({
+        mongoUrl: env.DB_URL
+    })
+}));
+
 
 app.use("/api/informations", informationRoutes);
+app.use("/api/users", usersRoutes);
 
 app.use((req, res, next) => {
 

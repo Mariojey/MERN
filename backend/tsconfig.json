@@ -9,6 +9,10 @@
     // See also https://aka.ms/tsconfig/module
     "module": "nodenext",
     "target": "esnext",
+    "typeRoots": [
+      "node_modules/@types",
+      "@types"
+    ],
     "types": [],
     // For nodejs:
     // "lib": ["esnext"],
@@ -40,5 +44,8 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+  },
+  "ts-node": {
+    "files": true
   }
 }

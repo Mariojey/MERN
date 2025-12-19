@@ -3,5 +3,6 @@ import { str } from "envalid";
 
 export default cleanEnv(process.env, {
     DB_URL: str(),
-    PORT: port()
+    PORT: port(),
+    SESSION_SECRET: str(),
 });

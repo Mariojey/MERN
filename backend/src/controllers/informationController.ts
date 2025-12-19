@@ -103,7 +103,7 @@ export const updateInformation: RequestHandler<IPatchInformationParams, unknown,
 
         const updatedInformation = await information.save();
 
-        res.status(200).json(updateInformation);
+        res.status(200).json(updatedInformation);
     }catch(error){
         next(error);
     }
